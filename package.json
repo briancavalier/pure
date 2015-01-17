@@ -1,0 +1,10 @@
+{
+  "name": "pure",
+  "version": "1.0.0",
+  "description": "Pure functional, immutable data structures",
+  "author": "brian@hovercraftstudios.com",
+  "license": "MIT",
+  "devDependencies": {
+    "benchmark": "^1.0.0"
+  }
+}
