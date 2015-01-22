@@ -6,6 +6,8 @@ module.exports = BinaryHeap;
 var LEAF;
 
 // A simple Binary Heap
+// By default, items are ordered using < and >
+// To use a different ordering, provide a compare function to heapOf()
 function BinaryHeap(compare, x, rank, left, right) {
 	// Unfortunate: Must explicitly accept an ordering/compare function
 	this._compare = compare;
@@ -16,13 +18,9 @@ function BinaryHeap(compare, x, rank, left, right) {
 }
 
 BinaryHeap.of = heapOf;
-function heapOf(x) {
-	return new BinaryHeap(defaultCompare, x, 1, LEAF, LEAF);
+function heapOf(x, compare) {
+	return new BinaryHeap(compare||defaultCompare, x, 1, LEAF, LEAF);
 }
-
-BinaryHeap.prototype.ordering = function(compare) {
-	return new BinaryHeap(compare, this._value, this._rank, this._left, this._right);
-};
 
 BinaryHeap.empty = function() {
 	return LEAF;
@@ -45,7 +43,7 @@ BinaryHeap.prototype.tail = function() {
 };
 
 BinaryHeap.prototype.insert = function(x) {
-	return merge(this._compare, this, heapOf(x));
+	return merge(this._compare, this, heapOf(x, this._compare));
 };
 
 BinaryHeap.prototype.merge = function(h) {
