@@ -6,5 +6,12 @@
   "license": "MIT",
   "devDependencies": {
     "benchmark": "^1.0.0"
+  },
+  "dependencies": {
+    "tap-min": "^0.1.0",
+    "tape": "^3.4.0"
+  },
+  "scripts": {
+    "test": "tape test/**/*-test.js | tap-min"
   }
 }
