@@ -53,7 +53,7 @@ Tree.prototype.foldr = function(f, z) {
 };
 
 Tree.prototype.toString = function() {
-	return treeToString('', this);
+	return this.value + forestToString('', this.children);
 };
 
 function treeToString(depth, tree) {
@@ -67,7 +67,7 @@ function forestToString(depth, forest) {
 }
 
 EMPTY = new Tree(void 0, List.empty());
-//
+
 //var t = Tree.tree(1, List.of(Tree.of(2)).cons(Tree.of(5)).cons(Tree.tree(3, List.of(Tree.of(4)))));
 //
 //console.log(t.toString());
