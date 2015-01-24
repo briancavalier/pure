@@ -52,10 +52,22 @@ Tree.prototype.foldr = function(f, z) {
 	}
 };
 
+Tree.prototype.toString = function() {
+	return treeToString('', this);
+};
+
+function treeToString(depth, tree) {
+	return depth + '|-' + tree.value + forestToString(depth + ' ', tree.children);
+}
+
+function forestToString(depth, forest) {
+	return forest.foldl(function(s, t) {
+		return s + '\n' + depth + treeToString(depth, t);
+	}, '');
+}
+
 EMPTY = new Tree(void 0, List.empty());
-
-var t = Tree.tree(1, List.of(Tree.of(3)).cons(Tree.of(2)));
-
-console.log(t.foldl(function(s, x) {
-	return s + ',' + x;
-}, ''));
+//
+//var t = Tree.tree(1, List.of(Tree.of(2)).cons(Tree.of(5)).cons(Tree.tree(3, List.of(Tree.of(4)))));
+//
+//console.log(t.toString());
