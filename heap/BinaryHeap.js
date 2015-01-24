@@ -19,6 +19,7 @@ function BinaryHeap(compare, x, rank, left, right) {
 
 BinaryHeap.of = heapOf;
 function heapOf(x, compare) {
+	// Unfortunate: optional comparator function
 	return new BinaryHeap(compare||defaultCompare, x, 1, LEAF, LEAF);
 }
 

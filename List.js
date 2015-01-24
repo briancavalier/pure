@@ -45,6 +45,11 @@ List.prototype.concat = function(l2) {
 	return concat(this, l2);
 };
 
+List.prototype.map = function(f) {
+	return this.isEmpty() ? this
+		 : new List(f(this.head()), this.tail().map(f));
+};
+
 List.prototype.foldl = function(f, z) {
 	return this.isEmpty() ? z
 		 : this.tail().foldl(f, f(z, this.head()));
