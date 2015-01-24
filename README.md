@@ -22,6 +22,10 @@ A FIFO queue built from two [List](#list)s.
 
 An ordered heap, built as a binary tree
 
+#### Tree (rose tree, aka multi-way tree)
+
+A tree in which each node has a value and zero or more child nodes, built atop [List](#list).
+
 ## Caveats
 
 Purely functional data structures are typically highly recursive.  Building them in an environment that lacks proper tail calls and [tail recursion modulo cons](http://en.wikipedia.org/wiki/Tail_call#Tail_recursion_modulo_cons) can result in stack overflows.  The only JavaScript environment I know of that supports proper tail calls is [continuum](https://github.com/Benvie/continuum), and no environments support tail recursion modulo cons.  Consequently, many of the data structures here will fail spectacularly and unpredictably by overflowing the call stack.
