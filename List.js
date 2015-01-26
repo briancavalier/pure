@@ -21,6 +21,8 @@ List.of = function(x) {
 	return EMPTY.cons(x);
 };
 
+List.unfold = unfoldList;
+
 List.prototype.cons = function(x) {
 	return new List(x, this);
 };
@@ -117,9 +119,11 @@ ConcatList.prototype.toString = function() {
 	return toString(this);
 };
 
-ConcatList.prototype[iterator.key] = function() {
-	return new ListIterator(this);
-};
+function unfoldList(f, a) {
+	var pair = f(a);
+	return pair === void 0 ? EMPTY
+		 : new List(pair[0], unfoldList(f, pair[1]));
+}
 
 // Reverse a list
 function reverse(l, r) {
@@ -142,17 +146,3 @@ function toString(list) {
 function appendStringItem(s, x) {
 	return s + ',' + x;
 }
-
-function ListIterator(list) {
-	this.list = list;
-}
-
-ListIterator.prototype.next = function() {
-	if(this.list.isEmpty()) {
-		return { done: true, value: void 0 };
-	}
-
-	var list = this.list;
-	this.list = list.tail();
-	return { done: false, value: list.head() };
-};

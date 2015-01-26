@@ -21,9 +21,7 @@ Tree.of = function(x) {
 	return new Tree(x, EMPTY);
 };
 
-Tree.tree = function(x, children) {
-	return new Tree(x, children);
-};
+Tree.unfold = unfoldTree;
 
 Tree.prototype.isEmpty = function() {
 	return this === EMPTY;
@@ -56,6 +54,18 @@ Tree.prototype.toString = function() {
 	return this.value + forestToString('', this.children);
 };
 
+function unfoldTree(f, a) {
+	var pair = f(a);
+	return pair === void 0 ? EMPTY
+		 : new Tree(pair[0], unfoldForest(f, pair[1]));
+}
+
+function unfoldForest(f, lista) {
+	return lista.map(function(a) {
+		return unfoldTree(f, a);
+	});
+}
+
 function treeToString(depth, tree) {
 	return depth + '|-' + tree.value + forestToString(depth + ' ', tree.children);
 }
@@ -67,7 +77,3 @@ function forestToString(depth, forest) {
 }
 
 EMPTY = new Tree(void 0, List.empty());
-
-//var t = Tree.tree(1, List.of(Tree.of(2)).cons(Tree.of(5)).cons(Tree.tree(3, List.of(Tree.of(4)))));
-//
-//console.log(t.toString());

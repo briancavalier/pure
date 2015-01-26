@@ -47,11 +47,6 @@ Queue.prototype.toString = function() {
 	return this.front.concat(this.back.reverse()).toString();
 };
 
-// ES iterator
-Queue.prototype[iterator.key] = function() {
-	return iterator.get(this.front.concat(this.back.reverse()));
-};
-
 // Pseudo-constructor that manages front/back lists
 function queue(front, frontLen, back, backLen) {
 	return frontLen === 0 ? new Queue(back.reverse(), backLen, List.empty(), 0)
