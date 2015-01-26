@@ -36,7 +36,8 @@ Queue.prototype.head = function() {
 };
 
 Queue.prototype.tail = function() {
-	return queue(this.front.tail(), this.frontLen - 1, this.back, this.backLen);
+	return this.isEmpty() ? this
+		 : queue(this.front.tail(), this.frontLen - 1, this.back, this.backLen);
 };
 
 Queue.prototype.push = function(x) {

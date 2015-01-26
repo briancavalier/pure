@@ -50,6 +50,14 @@ Tree.prototype.foldr = function(f, z) {
 	}
 };
 
+Tree.prototype.flatten = function() {
+	return flatten(this, List.empty());
+};
+
+function flatten(t, l) {
+	return l.cons(t.value, t.children.foldr(flatten, l));
+}
+
 Tree.prototype.toString = function() {
 	return this.value + forestToString('', this.children);
 };
