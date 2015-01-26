@@ -1,8 +1,6 @@
 /** @license MIT License (c) copyright 2015 original author or authors */
 /** @author Brian Cavalier */
 
-var iterator = require('./iterator');
-
 module.exports = List;
 
 var EMPTY;
@@ -64,11 +62,6 @@ List.prototype.foldr = function(f, z) {
 
 List.prototype.toString = function() {
 	return toString(this);
-};
-
-// ES iterator
-List.prototype[iterator.key] = function() {
-	return new ListIterator(this);
 };
 
 // The empty list

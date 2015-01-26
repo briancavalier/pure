@@ -4,9 +4,17 @@ This is an experiment with purely function, immutable data structures.  I wanted
 
 My plan is to pick a range of data structures and draw inspiration from Okasaki "Purely Functional Data Structures", as well as Haskell and Clojure core data structures.  I'll implement each minimally, but at least to a point that I feel shows the core concepts of the particular structure.  Some data structures, such as lists, serve as the basis for implementing others, and so may need a more complete implementation.
 
+## Goals
+
+1. Explore and compare techniques for pure functional programming in JavaScript.
+2. Learn more about pure functional data structures in general and their practicality in JavaScript.
+
 ## Data Structures
 
-All data structures are immutable: any operation that would mutate the data structure (eg `Array.prototype.push`) returns a new structure instead, leaving the original intact.
+In general, all the data structures:
+
+1. are immutable. Any operation that would mutate the data structure (eg `Array.prototype.push`) instead returns a new structure, leaving the original intact.
+1. are *not* lazy. It is possible to introduce thunks in JavaScript, but the process is typically manual, tedious, has performance (cpu and memory) implications, and would likely obscure other important aspects of the data structure implementations.
 
 ### Warm up
 

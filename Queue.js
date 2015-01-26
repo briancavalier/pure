@@ -2,7 +2,6 @@
 /** @author Brian Cavalier */
 
 var List = require('./List');
-var iterator = require('./iterator');
 
 module.exports = Queue;
 
