@@ -60,6 +60,10 @@ List.prototype.foldr = function(f, z) {
 		 : f(this.tail().foldr(f, z), this.head());
 };
 
+List.prototype.zipWith = function(f, l2) {
+	return zipWith(f, this, l2);
+};
+
 List.prototype.toString = function() {
 	return toString(this);
 };
@@ -108,6 +112,10 @@ ConcatList.prototype.foldr = function(f, z) {
 	return this.left.foldr(f, this.right.foldr(f, z));
 };
 
+ConcatList.prototype.zipWith = function(f, l2) {
+	return zipWith(f, this, l2);
+};
+
 ConcatList.prototype.toString = function() {
 	return toString(this);
 };
@@ -138,4 +146,9 @@ function toString(list) {
 
 function appendStringItem(s, x) {
 	return s + ',' + x;
+}
+
+function zipWith(f, l1, l2) {
+	return l1.isEmpty() || l2.isEmpty() ? List.empty()
+		 : zipWith(f, l1.tail(), l2.tail()).cons(f(l1.head(), l2.head()))
 }

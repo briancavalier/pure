@@ -20,3 +20,21 @@ test('List.of', function(t) {
 	t.ok(x, List.of(x).tail().isEmpty());
 	t.end();
 });
+
+test('List.zipWith', function(t) {
+	var l1 = List.of('c').cons('b').cons('a');
+	var l2 = List.of(999).cons(3).cons(2).cons(1);
+
+	var actual = l1.zipWith(append, l2);
+	var expected = List.of('c3').cons('b2').cons('a1');
+
+	t.equal(expected.head(), actual.head());
+	t.equal(expected.tail().head(), actual.tail().head());
+	t.equal(expected.tail().tail().head(), actual.tail().tail().head());
+	t.ok(actual.tail().tail().tail().isEmpty());
+	t.end();
+});
+
+function append(a, b) {
+	return a+b;
+}

@@ -12,6 +12,6 @@
     "tape": "^3.4.0"
   },
   "scripts": {
-    "test": "tape test/**/*-test.js | tap-min"
+    "test": "tape test/*-test.js test/**/*-test.js | tap-min"
   }
 }
